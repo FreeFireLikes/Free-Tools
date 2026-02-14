@@ -1,98 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verification Complete</title>
-
+<title>Verification Result</title>
 <style>
-body{
-    margin:0;
-    font-family:Segoe UI, sans-serif;
-    background:radial-gradient(circle,#08111f,#02050a);
-    color:white;
-    text-align:center;
-    padding-top:120px;
-}
-
-.card{
-    background:rgba(17,25,40,.75);
-    backdrop-filter:blur(12px);
-    padding:45px;
-    margin:auto;
-    width:380px;
-    border-radius:20px;
-    box-shadow:0 0 45px rgba(0,255,255,.08);
-}
-
-.success{
-    font-size:22px;
-    color:#4cff9a;
-    margin-bottom:15px;
-}
-
-.info{
-    background:black;
-    padding:14px;
-    border-radius:10px;
-    margin-top:15px;
-    letter-spacing:1px;
-}
-
-.loader{
-    margin-top:18px;
-    height:6px;
-    background:#111;
-    border-radius:10px;
-    overflow:hidden;
-}
-
-.bar{
-    height:100%;
-    width:0;
-    background:#4cff9a;
-    animation:load 2s forwards;
-}
-
-@keyframes load{
-    to{width:100%}
-}
+body{background:#02050a;color:white;font-family:Segoe UI;text-align:center;padding-top:120px}
+.card{background:#111827;padding:45px;margin:auto;width:380px;border-radius:18px}
+button{margin-top:15px;padding:12px 22px;border:none;border-radius:8px;background:#ff6a00;color:white}
+.fail{color:#ff4d4d}
+.success{color:#4cff9a}
 </style>
 </head>
-
 <body>
 
 <div class="card">
-<div class="success">Verification Complete ✅</div>
+<h2 id="title"></h2>
+<p id="info"></p>
 
-<p>Your UID has been verified successfully. Your likes send to your UID in 10-15 minutes. If your facing any problem then visit our YouTube channel Satellite FF</p>
-
-<div class="info" id="info">Loading data...</div>
-
-<div class="loader">
-<div class="bar"></div>
-</div>
-
-<p style="opacity:.7;margin-top:15px;">
-You can now safely return to the main site.
-</p>
+<button onclick="location='index.html'">Go to Main Page</button>
+<button id="retry" style="display:none" onclick="retry()">Verify Again</button>
 </div>
 
 <script>
-// Try reading from URL first
-const params=new URLSearchParams(location.search);
-let uid=params.get("uid");
-let region=params.get("region");
+let uid=localStorage.getItem("ff_uid");
+let region=localStorage.getItem("ff_region");
 
-// If not present, read from localStorage
-if(!uid){
-    uid=localStorage.getItem("ff_uid");
-    region=localStorage.getItem("ff_region");
+/* RANDOM RESULT */
+let success=Math.random()>0.35;
+
+let orders=JSON.parse(localStorage.getItem("ff_orders")||"[]");
+
+let now=new Date().toLocaleString();
+
+if(success){
+title.innerHTML="<span class='success'>Verification Complete ✅</span>";
+info.innerText="UID: "+uid+" | Region: "+region;
+
+orders.push({uid,region,status:"Successful",date:now});
+}else{
+title.innerHTML="<span class='fail'>Verification Not Completed Properly</span>";
+info.innerText="Please try again";
+retry.style.display="inline-block";
+
+orders.push({uid,region,status:"Failed",date:now});
 }
 
-// Show values
-document.getElementById("info").innerText=
-"UID: "+uid+" | Region: "+region;
+localStorage.setItem("ff_orders",JSON.stringify(orders));
+
+function retry(){
+location="verify.html?uid="+uid+"&region="+region;
+}
 </script>
 
 </body>
