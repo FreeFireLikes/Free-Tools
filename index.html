@@ -3,55 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Fire Likes Sender</title>
+<title>Free Fire Fan</title>
 
 <style>
 body{
-margin:0;font-family:Segoe UI;background:radial-gradient(circle,#08111f,#02050a);color:white;
+margin:0;
+font-family:Segoe UI, sans-serif;
+background:radial-gradient(circle,#08111f,#02050a);
+color:white;
 }
+
+/* HEADER */
 header{
-padding:80px 20px;text-align:center;
-background:url('https://wallpapercave.com/wp/wp8937134.jpg') center/cover;
+padding:80px 20px;
+text-align:center;
+background:url('https://wallpapercave.com/wp/wp8937134.jpg') center/cover no-repeat;
 }
 header h1{
-font-size:60px;color:#ff6a00;text-shadow:0 0 25px #ff6a00;
+font-size:56px;
+color:#ff6a00;
+text-shadow:0 0 25px #ff6a00;
 }
 
 /* MENU */
-.menu{position:absolute;top:20px;left:20px;cursor:pointer}
-.menu div{width:30px;height:3px;background:white;margin:6px 0}
-
-.drawer{
-position:fixed;left:-260px;top:0;width:260px;height:100%;
-background:#0b1220;padding:20px;transition:.4s;
+.menu{
+position:fixed;
+top:20px;
+left:20px;
+z-index:1001;
+cursor:pointer;
 }
-.drawer a{display:block;color:white;padding:12px 0;text-decoration:none}
+.menu div{
+width:28px;height:3px;background:white;margin:6px 0;
+}
+
+/* DRAWER */
+.drawer{
+position:fixed;
+top:0;
+left:-260px;
+width:260px;
+height:100%;
+background:#0b1220;
+padding:25px;
+transition:.3s;
+z-index:1000;
+box-shadow:5px 0 20px rgba(0,0,0,.4);
+}
 .drawer.open{left:0}
+.drawer a{
+display:block;
+color:white;
+padding:12px 0;
+text-decoration:none;
+border-bottom:1px solid rgba(255,255,255,.1);
+}
 
 /* CARD */
 .card{
-background:rgba(17,25,40,.75);backdrop-filter:blur(12px);
-max-width:420px;margin:-40px auto 40px;padding:30px;border-radius:20px;
+background:rgba(17,25,40,.75);
+backdrop-filter:blur(12px);
+max-width:420px;
+margin:-40px auto 40px;
+padding:30px;
+border-radius:18px;
+text-align:center;
 }
 
-#uidDisplay{background:black;padding:15px;border-radius:10px;margin-bottom:15px}
+#uidDisplay{
+background:black;
+padding:14px;
+border-radius:10px;
+margin-bottom:15px;
+letter-spacing:2px;
+font-size:20px;
+}
 
+/* KEYPAD */
+.keypad{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin-bottom:10px;
+}
 .keypad button{
-width:70px;height:55px;margin:6px;border:none;border-radius:10px;
-background:#111827;color:white;font-size:18px;cursor:pointer
+padding:14px;
+border:none;
+border-radius:10px;
+background:#111827;
+color:white;
+font-size:18px;
+cursor:pointer;
 }
 .keypad button:hover{background:#ff6a00}
 
-select{width:100%;padding:12px;border-radius:10px;border:none}
-
-.send{
-margin-top:20px;width:100%;padding:15px;border:none;border-radius:10px;
-background:linear-gradient(90deg,#ff6a00,#ff9500);color:white;font-size:18px;
-cursor:pointer
+/* INPUTS */
+select{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+margin-top:10px;
 }
 
-.loader{display:none;margin-top:15px}
-.bar{height:6px;background:#ff6a00;width:0;border-radius:10px;animation:load 2s forwards}
+/* SEND */
+.send{
+margin-top:18px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:linear-gradient(90deg,#ff6a00,#ff9500);
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+.loader{display:none;margin-top:12px}
+.bar{
+height:6px;background:#ff6a00;width:0;border-radius:10px;
+animation:load 2s forwards;
+}
 @keyframes load{to{width:100%}}
 </style>
 </head>
@@ -64,28 +136,29 @@ cursor:pointer
 
 <div class="drawer" id="drawer">
 <h3>Menu</h3>
-<a href="orders.html">Your Likes Order</a>
-<a href="#" onclick="alert('Service coming soon')">Guild Glory Bot</a>
-<a href="#" onclick="alert('Service coming soon')">Guild Manager Bot</a>
+<a href="orders.html">Your Orders</a>
+<a href="#" onclick="alert('Service coming soon')">Section 1</a>
+<a href="#" onclick="alert('Service coming soon')">Section 2</a>
 </div>
 
 <header>
-<h1>Free Fire Profile Likes</h1>
+<h1>Free Fire Fan</h1>
 </header>
 
 <div class="card">
+
 <div id="uidDisplay">Enter UID</div>
 
 <div class="keypad">
 <button onclick="add(1)">1</button>
 <button onclick="add(2)">2</button>
-<button onclick="add(3)">3</button><br>
+<button onclick="add(3)">3</button>
 <button onclick="add(4)">4</button>
 <button onclick="add(5)">5</button>
-<button onclick="add(6)">6</button><br>
+<button onclick="add(6)">6</button>
 <button onclick="add(7)">7</button>
 <button onclick="add(8)">8</button>
-<button onclick="add(9)">9</button><br>
+<button onclick="add(9)">9</button>
 <button onclick="clearUID()">C</button>
 <button onclick="add(0)">0</button>
 <button onclick="back()">⌫</button>
@@ -105,16 +178,18 @@ cursor:pointer
 <div class="bar"></div>
 <p>Processing...</p>
 </div>
+
 </div>
 
 <script>
 let uid="";
+
 function add(n){uid+=n;uidDisplay.innerText=uid}
 function clearUID(){uid="";uidDisplay.innerText="Enter UID"}
 function back(){uid=uid.slice(0,-1);uidDisplay.innerText=uid||"Enter UID"}
 
 function toggleMenu(){
-document.getElementById("drawer").classList.toggle("open");
+drawer.classList.toggle("open");
 }
 
 function send(){
@@ -122,9 +197,9 @@ if(uid.length<5){alert("Enter valid UID");return;}
 loader.style.display="block";
 setTimeout(()=>{
 location="verify.html?uid="+uid+"&region="+region.value;
-},2000);
+},1800);
 }
 </script>
 
 </body>
-    </html>
+</html>
