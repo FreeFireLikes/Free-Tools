@@ -1,37 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verification Complete</title>
+
 <style>
 body{
+    margin:0;
+    font-family:Segoe UI, sans-serif;
     background:radial-gradient(circle,#08111f,#02050a);
     color:white;
-    font-family:Segoe UI;
     text-align:center;
     padding-top:120px;
 }
+
 .card{
     background:rgba(17,25,40,.75);
     backdrop-filter:blur(12px);
-    padding:40px;
+    padding:45px;
     margin:auto;
     width:380px;
-    border-radius:18px;
+    border-radius:20px;
+    box-shadow:0 0 45px rgba(0,255,255,.08);
+}
+
+.success{
+    font-size:22px;
+    color:#4cff9a;
+    margin-bottom:15px;
+}
+
+.info{
+    background:black;
+    padding:14px;
+    border-radius:10px;
+    margin-top:15px;
+    letter-spacing:1px;
+}
+
+.loader{
+    margin-top:18px;
+    height:6px;
+    background:#111;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.bar{
+    height:100%;
+    width:0;
+    background:#4cff9a;
+    animation:load 2s forwards;
+}
+
+@keyframes load{
+    to{width:100%}
 }
 </style>
 </head>
+
 <body>
 
 <div class="card">
-<h2>Verification Complete ✅</h2>
-<p id="info"></p>
-<p>Your request has been processed successfully. Likes received in your profile in 10-15 minutes because many players sending likes on their profile. If likes not receive or facing any problem visit our YouTube channel SATELLITE FF</p>
+<div class="success">Verification Complete ✅</div>
+
+<p>Your UID has been verified successfully. Your likes send to your UID in 10-15 minutes. If your facing any problem then visit our YouTube channel Satellite FF</p>
+
+<div class="info" id="info">Loading data...</div>
+
+<div class="loader">
+<div class="bar"></div>
+</div>
+
+<p style="opacity:.7;margin-top:15px;">
+You can now safely return to the main site.
+</p>
 </div>
 
 <script>
-const p=new URLSearchParams(location.search);
-info.innerText="UID: "+p.get("uid")+" | Region: "+p.get("region");
+// Try reading from URL first
+const params=new URLSearchParams(location.search);
+let uid=params.get("uid");
+let region=params.get("region");
+
+// If not present, read from localStorage
+if(!uid){
+    uid=localStorage.getItem("ff_uid");
+    region=localStorage.getItem("ff_region");
+}
+
+// Show values
+document.getElementById("info").innerText=
+"UID: "+uid+" | Region: "+region;
 </script>
 
 </body>
