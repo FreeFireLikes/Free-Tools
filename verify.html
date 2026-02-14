@@ -1,74 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verification Required</title>
-
+<title>Verification</title>
 <style>
-body{
-    margin:0;
-    font-family:Segoe UI, sans-serif;
-    background:radial-gradient(circle,#08111f,#02050a);
-    color:white;
-    text-align:center;
-    padding-top:120px;
-}
-
-.card{
-    background:rgba(17,25,40,.75);
-    backdrop-filter:blur(12px);
-    padding:40px;
-    margin:auto;
-    width:360px;
-    border-radius:18px;
-    box-shadow:0 0 40px rgba(0,255,255,.08);
-}
-
-button{
-    padding:15px 32px;
-    background:linear-gradient(90deg,#ff6a00,#ff9500);
-    border:none;
-    border-radius:10px;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
-    margin-top:15px;
-}
-
-button:hover{
-    transform:scale(1.05);
-}
-
-.small{
-    opacity:.7;
-    font-size:14px;
-}
+body{background:#02050a;color:white;font-family:Segoe UI;text-align:center;padding-top:120px}
+.card{background:#111827;padding:40px;margin:auto;width:360px;border-radius:18px}
+button{padding:15px 30px;background:#ff6a00;border:none;border-radius:10px;color:white;font-size:18px}
 </style>
 </head>
-
 <body>
 
 <div class="card">
-<h2>Verification required</h2>
-<p class="small">Complete the step below to continue</p>
-
-<button onclick="verify()">VERIFY NOW</button>
+<h2>Verification Required</h2>
+<p>Complete verification to continue</p>
+<button onclick="verify()">VERIFY</button>
 </div>
 
 <script>
-// Read UID + region from URL
-const params=new URLSearchParams(location.search);
-const uid=params.get("uid");
-const region=params.get("region");
+const p=new URLSearchParams(location.search);
+const uid=p.get("uid");
+const region=p.get("region");
 
-// Save locally before leaving page
-localStorage.setItem("ff_uid", uid);
-localStorage.setItem("ff_region", region);
+localStorage.setItem("ff_uid",uid);
+localStorage.setItem("ff_region",region);
 
 function verify(){
-    // 🔴 PUT YOUR LINKSPAY LINK HERE
-    location.href="https://linkpays.in/9AkSgr";
+location.href="https://linkpays.in/9AkSgr";
 }
 </script>
 
