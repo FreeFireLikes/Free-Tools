@@ -5,11 +5,11 @@
 <title>Your Orders</title>
 <style>
 body{background:#02050a;color:white;font-family:Segoe UI;padding:40px}
-.card{background:#111827;padding:25px;border-radius:15px;max-width:600px;margin:auto}
-.item{border-bottom:1px solid #333;padding:10px 0}
+.card{background:#111827;padding:25px;border-radius:15px;max-width:650px;margin:auto}
+.item{border-bottom:1px solid #333;padding:12px 0}
 .success{color:#4cff9a}
 .fail{color:#ff4d4d}
-button{margin-top:20px;padding:12px 20px;border:none;border-radius:8px;background:#ff6a00;color:white}
+button{margin-top:20px;padding:12px 20px;border:none;border-radius:8px;background:#ff6a00;color:white;cursor:pointer}
 </style>
 </head>
 <body>
@@ -26,11 +26,11 @@ let orders=JSON.parse(localStorage.getItem("ff_orders")||"[]");
 if(!orders.length){
 list.innerHTML="<p>No orders yet.</p>";
 }else{
-orders.reverse().forEach(o=>{
+orders.slice().reverse().forEach(o=>{
 list.innerHTML+=`
 <div class="item">
-UID: ${o.uid} | Region: ${o.region}<br>
-Status: <span class="${o.status=='Successful'?'success':'fail'}">${o.status}</span><br>
+<b>UID:</b> ${o.uid} | <b>Region:</b> ${o.region}<br>
+<b>Status:</b> <span class="${o.status=='Successful'?'success':'fail'}">${o.status}</span><br>
 <small>${o.date}</small>
 </div>`;
 });
